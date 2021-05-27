@@ -18,7 +18,7 @@
 <!--
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>com.revature.web.servlet.UserServlet</servlet-class>
+        <servlet-class>com.revature.webapp.web.servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>

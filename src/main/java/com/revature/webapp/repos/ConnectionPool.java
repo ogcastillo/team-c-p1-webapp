@@ -11,10 +11,12 @@ public class ConnectionPool{
 
     private Queue<Connection> connectionPool = new LinkedList<>();
 
-    private static final ConnectionPool connectionPoolInstance = new ConnectionPool(System.getenv("num_conns"));
+    //private static final ConnectionPool connectionPoolInstance = new ConnectionPool(System.getenv("num_conns"));
+
+    private static final ConnectionPool connectionPoolInstance = new ConnectionPool("3");
 
     private ConnectionPool(String num_connections) {
-        this.connectionPool = ConnectionFactory.getInstance().getConnections(Integer.valueOf(num_connections));
+        this.connectionPool = ConnectionFactory.getInstance().getConnections(Integer.parseInt(num_connections));
     };
 
     public static ConnectionPool getConnectionPool(){
