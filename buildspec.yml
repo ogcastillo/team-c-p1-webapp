@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - aws cp s3::team-c-p1-orm/target/orm-0.1.jar ~/.m2/repository/com/revature/orm/0.1/orm-0.1.jar
+      - aws s3 cp s3::team-c-p1-orm/target/orm-0.1.jar ~/.m2/repository/com/revature/orm/0.1/orm-0.1.jar
       - mvn install
   post_build:
     commands:
