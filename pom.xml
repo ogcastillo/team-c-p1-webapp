@@ -14,12 +14,26 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>custom-orm</id>
+            <name>team c custom orm</name>
+            <url>https://team-c-p1-repo.s3.us-east-2.amazonaws.com/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
-
+<!--
         <dependency>
             <groupId>com.revature</groupId>
             <artifactId>orm</artifactId>
+            <version>0.1</version>
+        </dependency>
+-->
+        /0.1/orm-0.1.jar
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId></artifactId>
             <version>0.1</version>
         </dependency>
 
@@ -65,6 +79,13 @@
                         <update>true</update>
                     </configuration>
                     -->
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <packagingIndludes>WEB-INF/lib/*.jar</packagingIndludes>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
