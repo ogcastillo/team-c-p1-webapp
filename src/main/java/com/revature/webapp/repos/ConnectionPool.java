@@ -2,21 +2,45 @@ package com.revature.webapp.repos;
 
 import com.revature.webapp.util.ConnectionFactory;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.Queue;
 
 public class ConnectionPool{
 
     private Queue<Connection> connectionPool = new LinkedList<>();
+    private Properties props = new Properties();
 
     //private static final ConnectionPool connectionPoolInstance = new ConnectionPool(System.getenv("num_conns"));
+    //private static final ConnectionPool connectionPoolInstance = new ConnectionPool("3");
 
-    private static final ConnectionPool connectionPoolInstance = new ConnectionPool("3");
+    private static final ConnectionPool connectionPoolInstance = new ConnectionPool();
 
-    private ConnectionPool(String num_connections) {
-        this.connectionPool = ConnectionFactory.getInstance().getConnections(Integer.parseInt(num_connections));
+    private ConnectionPool() {
+
+        try{
+
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream input = loader.getResourceAsStream("application.properties");
+            props.load(input);
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.connectionPool = ConnectionFactory.getInstance().getConnections(props.getProperty("connections"),
+                                                                             props.getProperty("host-url"),
+                                                                             props.getProperty("username"),
+                                                                             props.getProperty("password"));
     };
 
     public static ConnectionPool getConnectionPool(){

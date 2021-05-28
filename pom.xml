@@ -48,6 +48,7 @@
 
     </dependencies>
 
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <pluginManagement>
@@ -56,12 +57,14 @@
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
+                    <!-- Commented for EC2 Deployment
                     <configuration>
                         <url>http://localhost:8080/manager/text</url>
                         <server>LocalTomcat</server>
                         <path>/team-c-p1-webapp</path>
                         <update>true</update>
                     </configuration>
+                    -->
                 </plugin>
             </plugins>
         </pluginManagement>

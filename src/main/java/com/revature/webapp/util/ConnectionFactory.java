@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
 public class ConnectionFactory {
 
     private static ConnectionFactory connectionFactory; // Lazy Singleton
-    private Properties props = new Properties();
+    //private Properties props = new Properties();
 
     static{
         try{
@@ -25,7 +26,7 @@ public class ConnectionFactory {
 
     private ConnectionFactory(){
 
-        try{
+        /*try{
 
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             InputStream input = loader.getResourceAsStream("application.properties");
@@ -36,7 +37,7 @@ public class ConnectionFactory {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static ConnectionFactory getInstance() {
@@ -48,12 +49,12 @@ public class ConnectionFactory {
         return connectionFactory;
     }
 
-    public Queue<Connection> getConnections(int numOfConnections){
+    public Queue<Connection> getConnections(String connections, String hostUrl, String dbUsername , String dbPassword){
         Queue<Connection> conns = new LinkedList<>();
         Connection conn=null;
         try{
-            for (int i = 0; i < numOfConnections; i++) {
-                conn = DriverManager.getConnection(props.getProperty("host-url"),props.getProperty("username"), props.getProperty("password"));
+            for (int i = 0; i < Integer.parseInt(connections); i++) {
+                conn= DriverManager.getConnection(hostUrl,dbUsername, dbPassword);
                 conns.add(conn);
             }
 
