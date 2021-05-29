@@ -23,17 +23,10 @@
     </repositories>
 
     <dependencies>
-<!--
+
         <dependency>
             <groupId>com.revature</groupId>
             <artifactId>orm</artifactId>
-            <version>0.1</version>
-        </dependency>
--->
-        /0.1/orm-0.1.jar
-        <dependency>
-            <groupId>com</groupId>
-            <artifactId></artifactId>
             <version>0.1</version>
         </dependency>
 
